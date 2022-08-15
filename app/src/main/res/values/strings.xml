@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Movies Suggestions</string>
+    <string name="imageDescription">image</string>
+    <string name="title">Title:</string>
+    <string name="year">Year:</string>
+    <string name="rating">Rating:</string>
+    <string name="genre">Genres:</string>
 </resources>

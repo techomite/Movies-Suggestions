@@ -8,6 +8,7 @@ import retrofit2.http.Query
 interface Apis {
 
     @GET("list_movies.json")
-    suspend fun getMoviesList(@Query("page") page: Int=1) :Response<MoviesList>
+    suspend fun getMoviesList(@Query("page") page: Int? =1,
+                              @Query("limit") limit: Int? =20) :Response<MoviesList>
 
 }
