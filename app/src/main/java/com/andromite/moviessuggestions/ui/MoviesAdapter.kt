@@ -5,38 +5,121 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.andromite.moviessuggestions.R
 import com.andromite.moviessuggestions.network.models.Movy
 import com.bumptech.glide.Glide
 
-class MoviesAdapter(var moviesList : List<Movy>, var context: Context) : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.movies_layout, parent, false)
-        return ViewHolder(view)
+class MoviesAdapter(var context: Context) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private val item: Int = 0
+    private val loading: Int = 1
+
+    private var isLoadingAdded: Boolean = false
+    private var retryPageLoad: Boolean = false
+
+    private var errorMsg: String? = ""
+
+    private var moviesModels: MutableList<Movy> = ArrayList()
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
+        return  if(viewType == item){
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.movies_layout, parent, false)
+            ViewHolder(view)
+        }else{
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.movies_layout, parent, false)
+            LoadingVH(view)
+        }
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.titleTextView.text = moviesList[position].titleEnglish
-        holder.yearTextView.text = moviesList[position].year.toString()
-        holder.ratingTextView.text = moviesList[position].rating.toString()
-        holder.genreTextView.text = moviesList[position].genres.toString()
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        Glide.with(context).load(moviesList[position].largeCoverImage).into(holder.posterImageView)
+        val model = moviesModels[position]
+        if(getItemViewType(position) == item){
+            val myOrderVH: ViewHolder = holder as ViewHolder
+            myOrderVH.bind(model, context)
+        }else{
+            val loadingVH: LoadingVH = holder as LoadingVH
+                loadingVH.progressbar.visibility = View.VISIBLE
+        }
     }
 
     override fun getItemCount(): Int {
-        return moviesList.size
+        return if (moviesModels.size > 0) moviesModels.size else 0
     }
 
-    class ViewHolder(itemView : View): RecyclerView.ViewHolder(itemView) {
+    override fun getItemViewType(position: Int): Int {
+        return if(position == 0){
+            item
+        }else {
+            if (position == moviesModels.size - 1 && isLoadingAdded) {
+                loading
+            } else {
+                item
+            }
+        }
+    }
+
+
+
+    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val posterImageView = itemView.findViewById<ImageView>(R.id.posterImageView)
         val titleTextView = itemView.findViewById<TextView>(R.id.titleTextView)
         val yearTextView = itemView.findViewById<TextView>(R.id.yearTextView)
         val ratingTextView = itemView.findViewById<TextView>(R.id.ratingTextView)
         val genreTextView = itemView.findViewById<TextView>(R.id.genreTextView)
+
+        fun bind(model: Movy, context : Context) {
+           titleTextView.text = model.titleEnglish
+           yearTextView.text = model.year.toString()
+           ratingTextView.text = model.rating.toString()
+           genreTextView.text = model.genres.toString()
+
+            Glide.with(context).load(model.largeCoverImage).into(posterImageView)
+        }
+    }
+
+    class LoadingVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val progressbar = itemView.findViewById<ProgressBar>(R.id.loadmore_progress)
+    }
+
+    fun showRetry(show: Boolean, errorMsg: String) {
+        retryPageLoad = show
+        notifyItemChanged(moviesModels.size - 1)
+        this.errorMsg = errorMsg
+    }
+
+    fun addAll(movies: MutableList<Movy>) {
+        for(movie in movies){
+            add(movie)
+        }
+    }
+
+    fun add(movy: Movy) {
+        moviesModels.add(movy)
+        notifyItemInserted(moviesModels.size - 1)
+    }
+
+    fun addLoadingFooter() {
+        isLoadingAdded = true
+//        add(Movy())
+    }
+
+    fun removeLoadingFooter() {
+        isLoadingAdded = false
+
+        val position: Int =moviesModels.size -1
+        val movie: Movy = moviesModels[position]
+
+        if(movie != null){
+            moviesModels.removeAt(position)
+            notifyItemRemoved(position)
+        }
     }
 }
