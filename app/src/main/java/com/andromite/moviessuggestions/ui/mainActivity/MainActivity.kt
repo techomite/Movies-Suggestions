@@ -1,4 +1,4 @@
-package com.andromite.moviessuggestions.ui
+package com.andromite.moviessuggestions.ui.mainActivity
 
 import android.os.Bundle
 import android.os.Handler

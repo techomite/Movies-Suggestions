@@ -1,4 +1,4 @@
-package com.andromite.moviessuggestions.ui
+package com.andromite.moviessuggestions.ui.mainActivity
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

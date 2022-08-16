@@ -1,4 +1,4 @@
-package com.andromite.moviessuggestions.ui
+package com.andromite.moviessuggestions.ui.mainActivity
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -81,7 +81,8 @@ class MoviesAdapter(var context: Context) :
            ratingTextView.text = model.rating.toString()
            genreTextView.text = model.genres.toString()
 
-            Glide.with(context).load(model.largeCoverImage).into(posterImageView)
+            Glide.with(context).load(model.largeCoverImage)
+                .into(posterImageView)
         }
     }
 
