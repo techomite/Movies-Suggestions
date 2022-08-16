@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.andromite.moviessuggestions.databinding.ActivityMainBinding
 import com.andromite.moviessuggestions.network.models.Movy
 import com.andromite.moviessuggestions.utils.PaginationScrollListener
+import com.andromite.moviessuggestions.utils.Utils
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,10 +37,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observerDataRequest() {
-        viewModel.moviesList.observe(this) {
+        viewModel.moviesListFirstTime.observe(this) {
             // add data to adapter
             val results: MutableList<Movy> = it.movies as MutableList<Movy>
             adapter.addAll(results)
+
+            totalPages = it.movieCount!!
+
+            if (currentPage <= totalPages) adapter.addLoadingFooter()
+            else isLastPage = true
+        }
+
+        viewModel.moviesListSecondTime.observe(this) {
+            // add data to adapter
+            val results: MutableList<Movy> = it.movies as MutableList<Movy>
+            adapter.removeLoadingFooter()
+            isLoading = false
+            adapter.addAll(results)
+
+            if (currentPage != totalPages) adapter.addLoadingFooter()
+            else isLastPage = true
         }
     }
 
@@ -55,6 +72,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.rvList.addOnScrollListener(object : PaginationScrollListener(layoutManager){
             override fun loadMoreItems() {
+                Utils.floge("inside loadMoreItems")
                 isLoading = true
                 currentPage += 1
 
@@ -79,10 +97,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadFirstPage() {
-        viewModel.getMoviesList(null)
+        viewModel.getMoviesList(currentPage)
     }
 
     private fun loadNextPage() {
-        viewModel.getMoviesList(null)
+        viewModel.getMoviesList(currentPage)
     }
 }

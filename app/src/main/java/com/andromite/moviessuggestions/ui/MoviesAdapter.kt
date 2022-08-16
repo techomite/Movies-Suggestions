@@ -33,7 +33,7 @@ class MoviesAdapter(var context: Context) :
             val view = LayoutInflater.from(parent.context).inflate(R.layout.movies_layout, parent, false)
             ViewHolder(view)
         }else{
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.movies_layout, parent, false)
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_loading, parent, false)
             LoadingVH(view)
         }
     }
@@ -108,7 +108,8 @@ class MoviesAdapter(var context: Context) :
 
     fun addLoadingFooter() {
         isLoadingAdded = true
-//        add(Movy())
+        add(Movy())
+
     }
 
     fun removeLoadingFooter() {

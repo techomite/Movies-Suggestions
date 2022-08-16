@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class Meta(
     @SerializedName("api_version")
-    val apiVersion: Int,
+    val apiVersion: Int? = null,
     @SerializedName("execution_time")
-    val executionTime: String,
+    val executionTime: String? = null,
     @SerializedName("server_time")
-    val serverTime: Int,
+    val serverTime: Int? = null,
     @SerializedName("server_timezone")
-    val serverTimezone: String
+    val serverTimezone: String? = null
 )

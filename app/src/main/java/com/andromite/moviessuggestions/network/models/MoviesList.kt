@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class MoviesList(
     @SerializedName("data")
-    val `data`: Data,
+    val `data`: Data? = null,
     @SerializedName("@meta")
-    val meta: Meta,
+    val meta: Meta? = null,
     @SerializedName("status")
-    val status: String,
+    val status: String? = null,
     @SerializedName("status_message")
-    val statusMessage: String
+    val statusMessage: String? = null
 )

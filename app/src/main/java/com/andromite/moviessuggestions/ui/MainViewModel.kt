@@ -10,14 +10,18 @@ import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
-    var moviesList =  MutableLiveData<Data>()
+    var moviesListFirstTime =  MutableLiveData<Data>()
+    var moviesListSecondTime =  MutableLiveData<Data>()
 
     fun getMoviesList(page: Int?){
         viewModelScope.launch {
             val response = ApiClient().apiClient.getMoviesList(page, Constants.pageLimit)
             val body = response.body()
             if (body?.status.equals("ok")) {
-                moviesList.postValue(body?.data)
+                if (page == 1)
+                moviesListFirstTime.postValue(body?.data)
+                else
+                    moviesListSecondTime.postValue(body?.data)
             } else if (body?.status.equals("error")) {
 
             }

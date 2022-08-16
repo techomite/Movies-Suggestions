@@ -1,5 +1,6 @@
 package com.andromite.moviessuggestions.network
 
+import com.andromite.moviessuggestions.utils.Constants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -8,25 +9,28 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiClient {
 
-    fun loadRetrofit(): Retrofit {
-        val logging = HttpLoggingInterceptor()
-        logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
+    private lateinit var retrofit: Retrofit
+    private fun loadRetrofit(): Retrofit {
 
-        val client = OkHttpClient.Builder()
-            .addInterceptor(logging)
-            .build();
+            val logging = HttpLoggingInterceptor()
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://yts.mx/api/v2/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
-            .build()
+            val client = OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .build()
 
-        return retrofit
+            retrofit = Retrofit.Builder()
+                .baseUrl(Constants.baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
 
+            return retrofit
     }
 
-    var apiClient = loadRetrofit().create(Apis::class.java)
+    val apiClient : Apis by lazy {
+        loadRetrofit().create(Apis::class.java)
+    }
 
 
 }
