@@ -16,7 +16,7 @@
         android:theme="@style/Theme.MoviesSuggestions"
         tools:targetApi="31">
         <activity
-            android:name=".ui.searchActivity.SearchActivity"
+            android:name=".ui.movieDetails.MoviesDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".ui.mainActivity.MainActivity"

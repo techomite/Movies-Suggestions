@@ -1,9 +1,9 @@
-package com.andromite.moviessuggestions.network.models
+package com.andromite.moviessuggestions.network.models.movieList
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Meta(
+data class MoviesListMeta(
     @SerializedName("api_version")
     val apiVersion: Int? = null,
     @SerializedName("execution_time")

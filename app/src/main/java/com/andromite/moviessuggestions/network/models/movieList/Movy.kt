@@ -1,4 +1,4 @@
-package com.andromite.moviessuggestions.network.models
+package com.andromite.moviessuggestions.network.models.movieList
 
 
 import com.google.gson.annotations.SerializedName
@@ -49,7 +49,7 @@ data class Movy(
     @SerializedName("title_long")
     val titleLong: String? = null,
     @SerializedName("torrents")
-    val torrents: List<Torrent?>? = null,
+    val torrents: List<MoviesListTorrent?>? = null,
     @SerializedName("url")
     val url: String? = null,
     @SerializedName("year")

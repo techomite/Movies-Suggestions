@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andromite.moviessuggestions.databinding.ActivityMainBinding
-import com.andromite.moviessuggestions.network.models.Movy
+import com.andromite.moviessuggestions.network.models.movieList.Movy
 import com.andromite.moviessuggestions.utils.PaginationScrollListener
 import com.andromite.moviessuggestions.utils.Utils
 

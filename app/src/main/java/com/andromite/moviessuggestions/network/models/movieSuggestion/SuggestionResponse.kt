@@ -1,13 +1,13 @@
-package com.andromite.moviessuggestions.network.models
+package com.andromite.moviessuggestions.network.models.movieSuggestion
 
 
 import com.google.gson.annotations.SerializedName
 
-data class MoviesList(
+data class SuggestionResponse(
     @SerializedName("data")
-    val `data`: Data? = null,
+    val `data`: SuggestionsData? = null,
     @SerializedName("@meta")
-    val meta: Meta? = null,
+    val meta: SuggestionMeta? = null,
     @SerializedName("status")
     val status: String? = null,
     @SerializedName("status_message")

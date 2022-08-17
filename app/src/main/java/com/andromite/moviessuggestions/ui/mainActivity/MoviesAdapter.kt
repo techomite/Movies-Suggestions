@@ -1,15 +1,18 @@
 package com.andromite.moviessuggestions.ui.mainActivity
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.andromite.moviessuggestions.R
-import com.andromite.moviessuggestions.network.models.Movy
+import com.andromite.moviessuggestions.network.models.movieList.Movy
+import com.andromite.moviessuggestions.ui.movieDetails.MoviesDetailsActivity
 import com.bumptech.glide.Glide
 
 
@@ -44,6 +47,8 @@ class MoviesAdapter(var context: Context) :
         if(getItemViewType(position) == item){
             val myOrderVH: ViewHolder = holder as ViewHolder
             myOrderVH.bind(model, context)
+
+
         }else{
             val loadingVH: LoadingVH = holder as LoadingVH
                 loadingVH.progressbar.visibility = View.VISIBLE
@@ -74,6 +79,8 @@ class MoviesAdapter(var context: Context) :
         val yearTextView = itemView.findViewById<TextView>(R.id.yearTextView)
         val ratingTextView = itemView.findViewById<TextView>(R.id.ratingTextView)
         val genreTextView = itemView.findViewById<TextView>(R.id.genreTextView)
+        val root = itemView.findViewById<ConstraintLayout>(R.id.root)
+
 
         fun bind(model: Movy, context : Context) {
            titleTextView.text = model.titleEnglish
@@ -83,6 +90,12 @@ class MoviesAdapter(var context: Context) :
 
             Glide.with(context).load(model.largeCoverImage)
                 .into(posterImageView)
+
+            root.setOnClickListener {
+                val intent = Intent(context, MoviesDetailsActivity::class.java)
+                intent.putExtra("movieId", model.id)
+                context.startActivity(intent)
+            }
         }
     }
 

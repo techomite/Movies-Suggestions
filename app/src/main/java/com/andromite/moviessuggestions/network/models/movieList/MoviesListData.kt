@@ -1,9 +1,9 @@
-package com.andromite.moviessuggestions.network.models
+package com.andromite.moviessuggestions.network.models.movieList
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Data(
+data class MoviesListData(
     @SerializedName("limit")
     val limit: Int? = null,
     @SerializedName("movie_count")

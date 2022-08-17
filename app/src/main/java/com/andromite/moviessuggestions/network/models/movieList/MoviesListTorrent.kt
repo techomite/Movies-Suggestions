@@ -1,9 +1,9 @@
-package com.andromite.moviessuggestions.network.models
+package com.andromite.moviessuggestions.network.models.movieList
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Torrent(
+data class MoviesListTorrent(
     @SerializedName("date_uploaded")
     val dateUploaded: String? = null,
     @SerializedName("date_uploaded_unix")
