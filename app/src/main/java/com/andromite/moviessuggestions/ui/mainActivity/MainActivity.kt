@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andromite.moviessuggestions.databinding.ActivityMainBinding
 import com.andromite.moviessuggestions.network.models.movieList.Movy
@@ -62,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initRecyclerView(){
         adapter = MoviesAdapter(this)
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = GridLayoutManager(this, 2)
 
         binding.rvList.adapter = adapter
         binding.rvList.setHasFixedSize(true)

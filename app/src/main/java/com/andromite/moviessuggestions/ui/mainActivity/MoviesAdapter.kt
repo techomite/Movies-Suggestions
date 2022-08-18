@@ -76,17 +76,11 @@ class MoviesAdapter(var context: Context) :
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val posterImageView = itemView.findViewById<ImageView>(R.id.posterImageView)
         val titleTextView = itemView.findViewById<TextView>(R.id.titleTextView)
-        val yearTextView = itemView.findViewById<TextView>(R.id.yearTextView)
-        val ratingTextView = itemView.findViewById<TextView>(R.id.ratingTextView)
-        val genreTextView = itemView.findViewById<TextView>(R.id.genreTextView)
         val root = itemView.findViewById<ConstraintLayout>(R.id.root)
 
 
         fun bind(model: Movy, context : Context) {
            titleTextView.text = model.titleEnglish
-           yearTextView.text = model.year.toString()
-           ratingTextView.text = model.rating.toString()
-           genreTextView.text = model.genres.toString()
 
             Glide.with(context).load(model.largeCoverImage)
                 .into(posterImageView)

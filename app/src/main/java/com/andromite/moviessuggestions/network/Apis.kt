@@ -11,7 +11,9 @@ interface Apis {
 
     @GET("list_movies.json")
     suspend fun getMoviesList(@Query("page") page: Int? =1,
-                              @Query("limit") limit: Int? =20) :Response<MoviesList>
+                              @Query("limit") limit: Int? =20,
+                                @Query("genre") genre : String = "action",
+                                @Query("sort_by") sort : String = "like_count") :Response<MoviesList>
 
     @GET("movie_details.json")
     suspend fun getMovieDetails(@Query("movie_id") movieId : Int) :Response<DetailsResponse>

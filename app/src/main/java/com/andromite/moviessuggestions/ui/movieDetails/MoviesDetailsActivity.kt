@@ -3,11 +3,9 @@ package com.andromite.moviessuggestions.ui.movieDetails
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import com.andromite.moviessuggestions.R
-import com.andromite.moviessuggestions.databinding.ActivityMainBinding
 import com.andromite.moviessuggestions.databinding.ActivitySearchBinding
 import com.andromite.moviessuggestions.network.models.movieDetails.Movie
-import com.andromite.moviessuggestions.network.models.movieSuggestion.SuggestionMovy
+import com.bumptech.glide.Glide
 
 class MoviesDetailsActivity : AppCompatActivity() {
 
@@ -19,6 +17,8 @@ class MoviesDetailsActivity : AppCompatActivity() {
         binding = ActivitySearchBinding.inflate(layoutInflater)
         val root = binding.root
         setContentView(root)
+
+        supportActionBar?.hide()
 
         viewModel = ViewModelProvider(this)[DetailsViewModel::class.java]
 
@@ -33,7 +33,7 @@ class MoviesDetailsActivity : AppCompatActivity() {
 
         viewModel.movieDetails.observe(this){
             if (it is Movie){
-                binding.details.text = "" + it
+                setMoviesData(it as Movie)
             } else if (it == "error"){
 
             }
@@ -41,11 +41,20 @@ class MoviesDetailsActivity : AppCompatActivity() {
 
         viewModel.movieSuggestions.observe(this){
             if (it is List<*>){
-                binding.suggestion.text = "" + it
+
             } else if (it == "error"){
 
             }
         }
 
+    }
+
+    fun setMoviesData(movie: Movie) {
+        binding.apply {
+
+            Glide.with(this@MoviesDetailsActivity).load(movie.mediumCoverImage).dontTransform().into(posterImageView)
+
+            titleTextView.text = movie.titleLong
+        }
     }
 }
