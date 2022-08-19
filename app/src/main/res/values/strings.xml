@@ -5,4 +5,9 @@
     <string name="year">Year:</string>
     <string name="rating">Rating:</string>
     <string name="genre">Genres:</string>
+    <string name="downloads">Downloads:</string>
+    <string name="imdb">IMDB:</string>
+    <string name="language">Language:</string>
+    <string name="description">Description:</string>
+    <string name="download_torrent">Download Torrent</string>
 </resources>
