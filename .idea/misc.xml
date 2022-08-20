@@ -4,9 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/MoviesSuggestions/app/src/main/res/layout/activity_main.xml" value="0.23229166666666667" />
-        <entry key="..\:/MoviesSuggestions/app/src/main/res/layout/activity_search.xml" value="0.4" />
+        <entry key="..\:/MoviesSuggestions/app/src/main/res/layout/activity_search.xml" value="0.22" />
         <entry key="..\:/MoviesSuggestions/app/src/main/res/layout/item_loading.xml" value="0.23229166666666667" />
         <entry key="..\:/MoviesSuggestions/app/src/main/res/layout/movies_layout.xml" value="0.23229166666666667" />
+        <entry key="..\:/MoviesSuggestions/app/src/main/res/layout/screenshot_layout.xml" value="0.34375" />
         <entry key="..\:/MoviesSuggestions/app/src/main/res/layout/torrent_layout.xml" value="0.23125" />
       </map>
     </option>

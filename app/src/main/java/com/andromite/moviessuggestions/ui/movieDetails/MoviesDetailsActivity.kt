@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andromite.moviessuggestions.databinding.ActivitySearchBinding
 import com.andromite.moviessuggestions.network.models.movieDetails.Movie
+import com.andromite.moviessuggestions.network.models.movieDetails.Torrent
 import com.bumptech.glide.Glide
 
 class MoviesDetailsActivity : AppCompatActivity() {
@@ -63,12 +64,24 @@ class MoviesDetailsActivity : AppCompatActivity() {
             genreTextView.text = movie.genres.toString()
             descTextView.text = movie.descriptionFull
 
-            val adapter = TorrentAdapter()
+            val torrentAdapter = TorrentAdapter(this@MoviesDetailsActivity)
             torrentRV.layoutManager = LinearLayoutManager(this@MoviesDetailsActivity, LinearLayoutManager.HORIZONTAL,false)
             torrentRV.setHasFixedSize(true)
-            torrentRV.adapter = adapter
+            torrentRV.adapter = torrentAdapter
+            torrentAdapter.addAll(movie.torrents as MutableList<Torrent>)
 
-            adapter.addAll(movie.torrents)
+            val screenshotAdapter = ScreenshotAdapter(this@MoviesDetailsActivity)
+            screenshotRV.layoutManager = LinearLayoutManager(this@MoviesDetailsActivity, LinearLayoutManager.HORIZONTAL,false)
+            screenshotRV.setHasFixedSize(true)
+            screenshotRV.adapter = screenshotAdapter
+
+            val screenshotList : MutableList<String> = ArrayList()
+            movie.mediumScreenshotImage1?.let { screenshotList.add(it) }
+            movie.mediumScreenshotImage2?.let { screenshotList.add(it) }
+            movie.mediumScreenshotImage3?.let { screenshotList.add(it) }
+
+            screenshotAdapter.addAll(screenshotList)
+
         }
     }
 }
