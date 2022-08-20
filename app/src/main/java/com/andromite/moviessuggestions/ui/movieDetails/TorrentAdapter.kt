@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.andromite.moviessuggestions.R
 import com.andromite.moviessuggestions.network.models.movieDetails.Torrent
+import com.andromite.moviessuggestions.network.models.movieSuggestion.SuggestionMovy
 
 
 class TorrentAdapter(private var context: Context) : RecyclerView.Adapter<TorrentAdapter.ViewHolder>() {

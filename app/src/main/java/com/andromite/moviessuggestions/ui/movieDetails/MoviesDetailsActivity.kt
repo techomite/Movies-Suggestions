@@ -3,10 +3,12 @@ package com.andromite.moviessuggestions.ui.movieDetails
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andromite.moviessuggestions.databinding.ActivitySearchBinding
 import com.andromite.moviessuggestions.network.models.movieDetails.Movie
 import com.andromite.moviessuggestions.network.models.movieDetails.Torrent
+import com.andromite.moviessuggestions.network.models.movieSuggestion.SuggestionMovy
 import com.bumptech.glide.Glide
 
 class MoviesDetailsActivity : AppCompatActivity() {
@@ -35,7 +37,7 @@ class MoviesDetailsActivity : AppCompatActivity() {
 
         viewModel.movieDetails.observe(this){
             if (it is Movie){
-                setMoviesData(it as Movie)
+                setMoviesData(it)
             } else if (it == "error"){
 
             }
@@ -43,7 +45,7 @@ class MoviesDetailsActivity : AppCompatActivity() {
 
         viewModel.movieSuggestions.observe(this){
             if (it is List<*>){
-
+                setSuggestionsData(it as List<SuggestionMovy?>?)
             } else if (it == "error"){
 
             }
@@ -82,6 +84,16 @@ class MoviesDetailsActivity : AppCompatActivity() {
 
             screenshotAdapter.addAll(screenshotList)
 
+        }
+    }
+
+    private fun setSuggestionsData(list: List<SuggestionMovy?>?) {
+        binding.apply {
+            val suggestionAdapter = SuggestionsAdapter(this@MoviesDetailsActivity)
+            suggestionRV.layoutManager = GridLayoutManager(this@MoviesDetailsActivity, 2)
+            suggestionRV.setHasFixedSize(true)
+            suggestionRV.adapter = suggestionAdapter
+            suggestionAdapter.addAll(list as MutableList<SuggestionMovy>)
         }
     }
 }

@@ -367,7 +367,7 @@
                 android:id="@+id/screenshotTilte"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/download_torrent"
+                android:text="@string/screenshots"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -380,6 +380,44 @@
                 android:layout_marginTop="15dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/screenshotTilte" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/suggestionDiv"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/screenshotLayout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/suggestionLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/suggestionDiv">
+
+            <TextView
+                android:id="@+id/suggestionTilte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/suggested_movies"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/suggestionRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/suggestionTilte" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

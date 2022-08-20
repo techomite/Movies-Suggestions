@@ -10,4 +10,6 @@
     <string name="language">Language:</string>
     <string name="description">Description:</string>
     <string name="download_torrent">Download Torrent</string>
+    <string name="suggested_movies">Suggested Movies</string>
+    <string name="screenshots">Screenshots:</string>
 </resources>
