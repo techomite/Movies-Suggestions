@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class DetailsResponse(
     @SerializedName("data")
-    val `data`: Data? = null,
+    val data: Data? = null,
     @SerializedName("@meta")
     val meta: Meta? = null,
     @SerializedName("status")

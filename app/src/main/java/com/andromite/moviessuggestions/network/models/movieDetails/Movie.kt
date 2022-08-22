@@ -1,6 +1,7 @@
 package com.andromite.moviessuggestions.network.models.movieDetails
 
 
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class Movie(
@@ -40,6 +41,7 @@ data class Movie(
     val likeCount: Int? = null,
     @SerializedName("medium_cover_image")
     val mediumCoverImage: String? = null,
+    @Expose
     @SerializedName("medium_screenshot_image1")
     val mediumScreenshotImage1: String? = null,
     @SerializedName("medium_screenshot_image2")

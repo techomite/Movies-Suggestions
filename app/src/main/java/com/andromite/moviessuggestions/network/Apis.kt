@@ -16,7 +16,9 @@ interface Apis {
                                 @Query("sort_by") sort : String = "like_count") :Response<MoviesList>
 
     @GET("movie_details.json")
-    suspend fun getMovieDetails(@Query("movie_id") movieId : Int) :Response<DetailsResponse>
+    suspend fun getMovieDetails(@Query("movie_id") movieId : Int,
+                                @Query("with_images") withImages : String = "true",
+                                @Query("with_cast") withCast: String = "true") :Response<DetailsResponse>
 
     @GET("movie_suggestions.json")
     suspend fun getMovieSuggestion(@Query("movie_id") movieId : Int) :Response<SuggestionResponse>
