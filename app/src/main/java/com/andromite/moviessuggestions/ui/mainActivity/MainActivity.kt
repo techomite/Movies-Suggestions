@@ -1,14 +1,20 @@
 package com.andromite.moviessuggestions.ui.mainActivity
 
+
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.andromite.moviessuggestions.R
 import com.andromite.moviessuggestions.databinding.ActivityMainBinding
 import com.andromite.moviessuggestions.network.models.movieList.Movy
+import com.andromite.moviessuggestions.ui.search.SearchActivity
 import com.andromite.moviessuggestions.utils.PaginationScrollListener
 import com.andromite.moviessuggestions.utils.Utils
 
@@ -103,5 +109,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadNextPage() {
         viewModel.getMoviesList(currentPage)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.home_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.searchMenu -> {
+                startActivity(Intent(this@MainActivity, SearchActivity::class.java))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

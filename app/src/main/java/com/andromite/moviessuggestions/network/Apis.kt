@@ -15,6 +15,10 @@ interface Apis {
                                 @Query("genre") genre : String = "action",
                                 @Query("sort_by") sort : String = "like_count") :Response<MoviesList>
 
+    @GET("list_movies.json")
+    suspend fun getSearchResultList(@Query("query_term") searchTerm : String,
+                                    @Query("sort_by") sortBy : String = "rating") :Response<MoviesList>
+
     @GET("movie_details.json")
     suspend fun getMovieDetails(@Query("movie_id") movieId : Int,
                                 @Query("with_images") withImages : String = "true",

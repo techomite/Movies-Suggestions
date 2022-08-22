@@ -62,4 +62,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
     implementation 'org.conscrypt:conscrypt-android:2.2.1'
+
+    // edittext debounce
+    implementation 'com.jakewharton.rxbinding:rxbinding:0.4.0'
 }
