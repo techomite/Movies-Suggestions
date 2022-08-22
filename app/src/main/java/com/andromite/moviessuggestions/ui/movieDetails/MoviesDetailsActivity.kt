@@ -1,11 +1,11 @@
 package com.andromite.moviessuggestions.ui.movieDetails
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.andromite.moviessuggestions.databinding.ActivitySearchBinding
+import com.andromite.moviessuggestions.databinding.ActivityMoviesDetailsBinding
 import com.andromite.moviessuggestions.network.models.movieDetails.Movie
 import com.andromite.moviessuggestions.network.models.movieDetails.Torrent
 import com.andromite.moviessuggestions.network.models.movieSuggestion.SuggestionMovy
@@ -13,12 +13,12 @@ import com.bumptech.glide.Glide
 
 class MoviesDetailsActivity : AppCompatActivity() {
 
-    lateinit var binding : ActivitySearchBinding
+    lateinit var binding : ActivityMoviesDetailsBinding
     lateinit var viewModel: DetailsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySearchBinding.inflate(layoutInflater)
+        binding = ActivityMoviesDetailsBinding.inflate(layoutInflater)
         val root = binding.root
         setContentView(root)
 
