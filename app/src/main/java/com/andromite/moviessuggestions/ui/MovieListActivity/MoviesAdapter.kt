@@ -1,4 +1,4 @@
-package com.andromite.moviessuggestions.ui.mainActivity
+package com.andromite.moviessuggestions.ui.MovieListActivity
 
 import android.content.Context
 import android.content.Intent

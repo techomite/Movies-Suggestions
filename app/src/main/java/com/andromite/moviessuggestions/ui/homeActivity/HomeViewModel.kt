@@ -1,4 +1,4 @@
-package com.andromite.moviessuggestions.ui.mainActivity
+package com.andromite.moviessuggestions.ui.homeActivity
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,20 +8,18 @@ import com.andromite.moviessuggestions.network.models.movieList.MoviesListData
 import com.andromite.moviessuggestions.utils.Constants
 import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
+class HomeViewModel : ViewModel() {
 
-    var moviesListFirstTime =  MutableLiveData<MoviesListData>()
-    var moviesListSecondTime =  MutableLiveData<MoviesListData>()
+    var trendingList = MutableLiveData<MoviesListData>()
+    var latestList = MutableLiveData<MoviesListData>()
 
-    fun getMoviesList(page: Int?){
+    fun getTrendingList() {
         viewModelScope.launch {
-            val response = ApiClient().apiClient.getMoviesList(page, Constants.pageLimit)
+            val response = ApiClient().apiClient.getMoviesList(Constants.pageLimit)
             val body = response.body()
             if (body?.status.equals("ok")) {
-                if (page == 1)
-                moviesListFirstTime.postValue(body?.moviesListData)
-                else
-                    moviesListSecondTime.postValue(body?.moviesListData)
+                trendingList.postValue(body?.moviesListData)
+                latestList.postValue(body?.moviesListData)
             } else if (body?.status.equals("error")) {
 
             }

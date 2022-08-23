@@ -1,4 +1,4 @@
-package com.andromite.moviessuggestions.ui.mainActivity
+package com.andromite.moviessuggestions.ui.MovieListActivity
 
 
 import android.content.Intent
@@ -7,7 +7,6 @@ import android.os.Handler
 import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -19,7 +18,7 @@ import com.andromite.moviessuggestions.utils.PaginationScrollListener
 import com.andromite.moviessuggestions.utils.Utils
 
 
-class MainActivity : AppCompatActivity() {
+class MovieListActivity : AppCompatActivity() {
 
     private lateinit var viewModel : MainViewModel
     private lateinit var binding : ActivityMainBinding
@@ -119,7 +118,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.searchMenu -> {
-                startActivity(Intent(this@MainActivity, SearchActivity::class.java))
+                startActivity(Intent(this@MovieListActivity, SearchActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)

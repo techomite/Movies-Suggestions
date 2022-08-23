@@ -16,13 +16,7 @@
         android:theme="@style/Theme.MoviesSuggestions"
         tools:targetApi="31">
         <activity
-            android:name=".ui.search.SearchActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.movieDetails.MoviesDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.mainActivity.MainActivity"
+            android:name=".ui.homeActivity.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +24,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.movieDetails.MoviesDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MovieListActivity.MovieListActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>
