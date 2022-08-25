@@ -7,6 +7,10 @@
     android:background="@color/activity_background"
     tools:context=".ui.homeActivity.HomeActivity">
 
+    <include
+        android:id="@+id/pbview"
+        layout="@layout/layout_progress_bar"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/parentRecyclerView"
         android:layout_width="match_parent"

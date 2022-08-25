@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andromite.moviessuggestions.R
@@ -45,27 +46,32 @@ class HomeActivity : AppCompatActivity() {
         viewModel.trendingList.observe(this){
             var parentItem = ParentItem("Trending", getChildList(it))
             adapter.add(parentItem)
+            binding.pbview.progressbar.visibility = View.GONE
         }
 
         viewModel.latestList.observe(this){
             val parentItem = ParentItem("Latest", getChildList(it))
             adapter.add(parentItem)
+            binding.pbview.progressbar.visibility = View.GONE
         }
 
         viewModel.adventureList.observe(this){
             val parentItem = ParentItem("Adventure", getChildList(it))
             adapter.add(parentItem)
+            binding.pbview.progressbar.visibility = View.GONE
         }
 
 
         viewModel.comedyList.observe(this){
             val parentItem = ParentItem("Comedy", getChildList(it))
             adapter.add(parentItem)
+            binding.pbview.progressbar.visibility = View.GONE
         }
 
         viewModel.horrorList.observe(this){
             val parentItem = ParentItem("Horror", getChildList(it))
             adapter.add(parentItem)
+            binding.pbview.progressbar.visibility = View.GONE
         }
 
     }
