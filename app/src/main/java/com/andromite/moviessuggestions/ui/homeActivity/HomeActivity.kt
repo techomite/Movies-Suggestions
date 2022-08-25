@@ -29,11 +29,9 @@ class HomeActivity : AppCompatActivity() {
 
         viewModel.getTrendingList()
         viewModel.getLatestList()
-        viewModel.getActionList()
-        viewModel.get3DList()
+        viewModel.getAdventureList()
         viewModel.getComedyList()
         viewModel.getHorrorList()
-        viewModel.getScifiList()
 
 
     }
@@ -49,15 +47,11 @@ class HomeActivity : AppCompatActivity() {
             adapter.add(parentItem)
         }
 
-        viewModel.actionList.observe(this){
-            val parentItem = ParentItem("Action", getChildList(it))
+        viewModel.adventureList.observe(this){
+            val parentItem = ParentItem("Adventure", getChildList(it))
             adapter.add(parentItem)
         }
 
-        viewModel.list3d.observe(this){
-            val parentItem = ParentItem("3D", getChildList(it))
-            adapter.add(parentItem)
-        }
 
         viewModel.comedyList.observe(this){
             val parentItem = ParentItem("Comedy", getChildList(it))
@@ -69,10 +63,6 @@ class HomeActivity : AppCompatActivity() {
             adapter.add(parentItem)
         }
 
-        viewModel.scifiList.observe(this){
-            val parentItem = ParentItem("Sci-Fi", getChildList(it))
-            adapter.add(parentItem)
-        }
     }
 
     private fun initRecyclerview() {

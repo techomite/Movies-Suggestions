@@ -7,6 +7,7 @@ import com.andromite.moviessuggestions.utils.Constants
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
 interface Apis {
 
@@ -14,10 +15,15 @@ interface Apis {
     suspend fun getMoviesList(
         @Query("page") page: Int? = 1,
         @Query("limit") limit: Int? = Constants.pageLimit,
-        @Query("genre") genre: String = "action",
-        @Query("sort_by") sort: String = "date_added",
+        @Query("genre") genre: String = "All",
+        @Query("sort_by") sort_by: String = "date_added",
         @Query("order_by") order_by: String = "asc",
         @Query("quality") quality: String = "All"
+    ): Response<MoviesList>
+
+    @GET("list_movies.json")
+    suspend fun getCustomMoviesList(
+        @QueryMap queryMap:  Map<String, String>
     ): Response<MoviesList>
 
     @GET("list_movies.json")
