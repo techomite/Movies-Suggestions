@@ -1,13 +1,18 @@
 package com.andromite.moviessuggestions.ui.homeActivity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.andromite.moviessuggestions.R
 import com.andromite.moviessuggestions.databinding.ActivityHomeBinding
 import com.andromite.moviessuggestions.network.models.ChildItem
 import com.andromite.moviessuggestions.network.models.ParentItem
 import com.andromite.moviessuggestions.network.models.movieList.MoviesListData
+import com.andromite.moviessuggestions.ui.search.SearchActivity
 
 class HomeActivity : AppCompatActivity() {
 
@@ -80,5 +85,20 @@ class HomeActivity : AppCompatActivity() {
             childItemList.add(item)
         }
         return childItemList
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.home_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.searchMenu -> {
+                startActivity(Intent(this, SearchActivity::class.java))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
